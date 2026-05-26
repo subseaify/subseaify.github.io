@@ -2,8 +2,13 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
   <title>Subseaify</title>
 
@@ -32,42 +37,62 @@
     .bg-video{
       position:fixed;
       inset:0;
+
       width:100%;
       height:100%;
+
       object-fit:cover;
+
       z-index:-3;
     }
 
     .overlay{
       position:fixed;
       inset:0;
-      background:rgba(0,0,0,0.32);
+
+      background:rgba(0,0,0,0.30);
+
       z-index:-2;
     }
 
     .logo{
       position:absolute;
+
       top:25px;
       left:30px;
+
       width:240px;
       max-width:42vw;
+
       z-index:5;
     }
 
     .content{
-      max-width:1100px;
-      margin:110px auto 80px;
+      max-width:1150px;
+
+      margin:140px auto 80px;
+
       text-align:center;
     }
 
     h1{
-      font-family:"Trebuchet MS", Arial, sans-serif;
-      font-size:58px;
-      line-height:1.1;
-      font-weight:800;
+      font-family:
+      "Trebuchet MS",
+      Arial,
+      sans-serif;
+
+      font-size:72px;
+
+      line-height:1.05;
+
+      font-weight:900;
+
       letter-spacing:0.5px;
-      margin-bottom:40px;
-      text-shadow:0 0 18px rgba(0,0,0,0.55);
+
+      margin-bottom:70px;
+
+      text-shadow:
+      0 0 22px rgba(0,0,0,0.55);
     }
 
     h1 span{
@@ -76,23 +101,27 @@
 
     .slider{
       position:relative;
+
       width:100%;
       max-width:950px;
 
       aspect-ratio:16 / 9;
 
-      margin:28px auto;
+      margin:34px auto;
 
       overflow:hidden;
 
-      border-radius:20px;
+      border-radius:22px;
 
-      border:2px solid rgba(41,213,255,0.85);
+      border:
+      2px solid rgba(41,213,255,0.85);
 
       box-shadow:
-      0 0 35px rgba(0,0,0,0.55);
+      0 0 45px rgba(0,0,0,0.6);
 
       background:black;
+
+      backdrop-filter:blur(6px);
     }
 
     .slider img{
@@ -113,6 +142,7 @@
 
     .handle{
       position:absolute;
+
       top:0;
       left:50%;
 
@@ -130,19 +160,23 @@
       content:"↔";
 
       position:absolute;
+
       top:50%;
       left:50%;
 
-      transform:translate(-50%,-50%);
+      transform:
+      translate(-50%,-50%);
 
-      width:52px;
-      height:52px;
+      width:56px;
+      height:56px;
 
       border-radius:50%;
 
-      background:rgba(0,0,0,0.75);
+      background:
+      rgba(0,0,0,0.72);
 
-      border:2px solid #29d5ff;
+      border:
+      2px solid #29d5ff;
 
       display:flex;
       justify-content:center;
@@ -150,10 +184,10 @@
 
       color:#29d5ff;
 
-      font-size:26px;
+      font-size:28px;
       font-weight:bold;
 
-      backdrop-filter:blur(5px);
+      backdrop-filter:blur(6px);
     }
 
     .slider input{
@@ -172,13 +206,15 @@
 
     .label{
       position:absolute;
+
       top:16px;
 
       padding:8px 16px;
 
       border-radius:30px;
 
-      background:rgba(0,0,0,0.55);
+      background:
+      rgba(0,0,0,0.55);
 
       backdrop-filter:blur(5px);
 
@@ -197,6 +233,50 @@
       color:#29d5ff;
     }
 
+    footer{
+      text-align:center;
+
+      padding:70px 20px 45px;
+
+      color:#d7e5ec;
+    }
+
+    .footer-text{
+      margin-bottom:14px;
+
+      font-size:17px;
+
+      letter-spacing:0.3px;
+
+      opacity:0.92;
+    }
+
+    footer a{
+      color:#29d5ff;
+
+      text-decoration:none;
+
+      font-size:18px;
+
+      font-weight:bold;
+
+      transition:0.3s ease;
+    }
+
+    footer a:hover{
+      opacity:0.8;
+    }
+
+    .copyright{
+      margin-top:24px;
+
+      font-size:13px;
+
+      opacity:0.65;
+
+      letter-spacing:1px;
+    }
+
     @media(max-width:768px){
 
       .logo{
@@ -205,11 +285,13 @@
       }
 
       .content{
-        margin-top:100px;
+        margin-top:110px;
       }
 
       h1{
-        font-size:38px;
+        font-size:44px;
+
+        margin-bottom:50px;
       }
 
       .slider{
@@ -217,9 +299,14 @@
       }
 
       .handle::after{
-        width:42px;
-        height:42px;
-        font-size:20px;
+        width:44px;
+        height:44px;
+
+        font-size:22px;
+      }
+
+      .footer-text{
+        font-size:15px;
       }
 
     }
@@ -230,8 +317,17 @@
 
 <body>
 
-  <video autoplay muted loop playsinline class="bg-video">
-    <source src="./ocean.mp4" type="video/mp4">
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    class="bg-video"
+  >
+    <source
+      src="./ocean.mp4"
+      type="video/mp4"
+    >
   </video>
 
   <div class="overlay"></div>
@@ -323,25 +419,52 @@
 
   </section>
 
+  <footer>
+
+    <div class="footer-text">
+      For collaborations, research, or industry inquiries, connect with us on LinkedIn.
+    </div>
+
+    <a
+      href="https://www.linkedin.com/in/aliebra/"
+      target="_blank"
+    >
+      LinkedIn
+    </a>
+
+    <div class="copyright">
+      © 2026 Subseaify
+    </div>
+
+  </footer>
+
   <script>
 
-    document.querySelectorAll('.slider').forEach(slider => {
+    document
+      .querySelectorAll('.slider')
+      .forEach(slider => {
 
-      const range = slider.querySelector('input');
+      const range =
+      slider.querySelector('input');
 
-      const enhanced = slider.querySelector('.enhanced');
+      const enhanced =
+      slider.querySelector('.enhanced');
 
-      const handle = slider.querySelector('.handle');
+      const handle =
+      slider.querySelector('.handle');
 
-      range.addEventListener('input', () => {
+      range.addEventListener(
+        'input',
+        () => {
 
-        const value = range.value;
+        const value =
+        range.value;
 
         enhanced.style.clipPath =
-          `inset(0 0 0 ${value}%)`;
+        `inset(0 0 0 ${value}%)`;
 
         handle.style.left =
-          `${value}%`;
+        `${value}%`;
 
       });
 
