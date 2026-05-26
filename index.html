@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Subseaify</title>
 
   <style>
+
     *{
       margin:0;
       padding:0;
@@ -13,27 +16,31 @@
     }
 
     body{
-      font-family: Arial, Helvetica, sans-serif;
-      background:#02111f;
+      font-family:Arial, Helvetica, sans-serif;
       overflow-x:hidden;
+      background:black;
       color:white;
     }
 
     .hero{
-      min-height:100vh;
       position:relative;
+      width:100%;
+      min-height:100vh;
       display:flex;
-      flex-direction:column;
       justify-content:center;
       align-items:center;
-      text-align:center;
-      padding:40px 20px;
       overflow:hidden;
-      background:
-      linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.7)),
-      url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?q=80&w=1600&auto=format&fit=crop');
-      background-size:cover;
-      background-position:center;
+      padding:60px 20px;
+    }
+
+    .bg-video{
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:0;
     }
 
     .overlay{
@@ -42,88 +49,126 @@
       left:0;
       width:100%;
       height:100%;
-      background:radial-gradient(circle at top, rgba(0,180,255,0.2), transparent 60%);
+      background:
+      linear-gradient(
+        rgba(0,0,0,0.45),
+        rgba(0,0,0,0.65)
+      );
       z-index:1;
     }
 
     .content{
       position:relative;
       z-index:2;
-      max-width:1300px;
       width:100%;
+      max-width:1500px;
+      text-align:center;
     }
 
     .logo{
-      font-size:64px;
+      font-size:72px;
       font-weight:900;
-      letter-spacing:2px;
+      letter-spacing:4px;
       margin-bottom:20px;
     }
 
     .logo span{
-      color:#25d5ff;
+      color:#29d5ff;
+    }
+
+    .headline{
+      font-size:78px;
+      font-weight:900;
+      line-height:1.05;
+      margin-bottom:20px;
+    }
+
+    .headline .blue{
+      color:#29d5ff;
     }
 
     .subtitle{
-      font-size:24px;
-      color:#c7d8e2;
-      margin-bottom:60px;
-      line-height:1.5;
+      font-size:28px;
+      color:#d8e6ee;
+      margin-bottom:55px;
     }
 
-    .image-container{
-      display:flex;
-      gap:30px;
-      justify-content:center;
-      flex-wrap:wrap;
-    }
-
-    .card{
-      position:relative;
-      width:600px;
-      border-radius:20px;
+    .result-card{
+      width:100%;
+      max-width:1400px;
+      margin:auto;
+      border-radius:28px;
       overflow:hidden;
-      background:rgba(255,255,255,0.05);
+
+      border:1px solid rgba(255,255,255,0.12);
+
+      box-shadow:
+      0 0 60px rgba(0,0,0,0.45);
+
       backdrop-filter:blur(10px);
-      border:1px solid rgba(255,255,255,0.1);
-      box-shadow:0 0 40px rgba(0,0,0,0.4);
-      transition:0.3s ease;
     }
 
-    .card:hover{
-      transform:translateY(-8px);
-      box-shadow:0 0 50px rgba(37,213,255,0.3);
-    }
-
-    .card img{
+    .result-card img{
       width:100%;
       display:block;
     }
 
-    .label{
-      position:absolute;
-      top:20px;
-      left:20px;
-      background:rgba(0,0,0,0.7);
-      padding:10px 18px;
-      border-radius:30px;
+    .features{
+      display:flex;
+      justify-content:center;
+      gap:30px;
+      flex-wrap:wrap;
+      margin-top:45px;
+    }
+
+    .feature{
+      background:rgba(255,255,255,0.06);
+
+      border:1px solid rgba(255,255,255,0.08);
+
+      padding:20px 24px;
+
+      border-radius:20px;
+
+      backdrop-filter:blur(10px);
+
+      min-width:240px;
+    }
+
+    .feature-title{
+      color:#29d5ff;
       font-size:18px;
       font-weight:bold;
-      letter-spacing:1px;
+      margin-bottom:10px;
     }
 
-    .enhanced{
-      background:#25d5ff;
-      color:black;
+    .feature-text{
+      color:#d8e6ee;
+      line-height:1.5;
+      font-size:15px;
     }
 
-    @media(max-width:1300px){
-      .card{
-        width:90%;
+    @media(max-width:1200px){
+
+      .headline{
+        font-size:56px;
       }
+
+      .logo{
+        font-size:54px;
+      }
+
+      .subtitle{
+        font-size:22px;
+      }
+
     }
 
     @media(max-width:768px){
+
+      .headline{
+        font-size:38px;
+      }
 
       .logo{
         font-size:42px;
@@ -131,50 +176,89 @@
 
       .subtitle{
         font-size:18px;
-        margin-bottom:40px;
       }
 
-      .image-container{
-        gap:20px;
+      .features{
+        gap:18px;
       }
+
+      .feature{
+        width:100%;
+      }
+
     }
 
   </style>
+
 </head>
 
 <body>
 
-<section class="hero">
+  <section class="hero">
 
-  <div class="overlay"></div>
+    <video autoplay muted loop playsinline class="bg-video">
+      <source src="ocean.mp4" type="video/mp4">
+    </video>
 
-  <div class="content">
+    <div class="overlay"></div>
 
-    <div class="logo">
-      SUBSEA<span>IFY</span>
-    </div>
+    <div class="content">
 
-    <div class="subtitle">
-      AI-powered underwater video enhancement and color restoration
-    </div>
-
-    <div class="image-container">
-
-      <div class="card">
-        <div class="label">ORIGINAL</div>
-        <img src="original.jpg" alt="Original Underwater Image">
+      <div class="logo">
+        SUBSEA<span>IFY</span>
       </div>
 
-      <div class="card">
-        <div class="label enhanced">ENHANCED</div>
-        <img src="enhanced.jpg" alt="Enhanced Underwater Image">
+      <div class="headline">
+        SEE CLEARER.<br>
+        <span class="blue">INSPECT SMARTER.</span>
+      </div>
+
+      <div class="subtitle">
+        AI-powered underwater video enhancement and color restoration
+      </div>
+
+      <div class="result-card">
+        <img src="Subseaify_Result.png" alt="Subseaify Results">
+      </div>
+
+      <div class="features">
+
+        <div class="feature">
+          <div class="feature-title">
+            Enhanced Visibility
+          </div>
+
+          <div class="feature-text">
+            Transform murky underwater footage into clearer visual data.
+          </div>
+        </div>
+
+        <div class="feature">
+          <div class="feature-title">
+            AI Enhancement
+          </div>
+
+          <div class="feature-text">
+            Advanced underwater enhancement powered by AI.
+          </div>
+        </div>
+
+        <div class="feature">
+          <div class="feature-title">
+            Subsea Inspection
+          </div>
+
+          <div class="feature-text">
+            Improve underwater inspection efficiency and safety.
+          </div>
+        </div>
+
       </div>
 
     </div>
 
-  </div>
-
-</section>
+  </section>
 
 </body>
+
 </html>
