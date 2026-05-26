@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Subseaify</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family: Arial, Helvetica, sans-serif;
+      background:#02111f;
+      overflow-x:hidden;
+      color:white;
+    }
+
+    .hero{
+      min-height:100vh;
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:40px 20px;
+      overflow:hidden;
+      background:
+      linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.7)),
+      url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?q=80&w=1600&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+    }
+
+    .overlay{
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:radial-gradient(circle at top, rgba(0,180,255,0.2), transparent 60%);
+      z-index:1;
+    }
+
+    .content{
+      position:relative;
+      z-index:2;
+      max-width:1300px;
+      width:100%;
+    }
+
+    .logo{
+      font-size:64px;
+      font-weight:900;
+      letter-spacing:2px;
+      margin-bottom:20px;
+    }
+
+    .logo span{
+      color:#25d5ff;
+    }
+
+    .subtitle{
+      font-size:24px;
+      color:#c7d8e2;
+      margin-bottom:60px;
+      line-height:1.5;
+    }
+
+    .image-container{
+      display:flex;
+      gap:30px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    .card{
+      position:relative;
+      width:600px;
+      border-radius:20px;
+      overflow:hidden;
+      background:rgba(255,255,255,0.05);
+      backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,0.1);
+      box-shadow:0 0 40px rgba(0,0,0,0.4);
+      transition:0.3s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-8px);
+      box-shadow:0 0 50px rgba(37,213,255,0.3);
+    }
+
+    .card img{
+      width:100%;
+      display:block;
+    }
+
+    .label{
+      position:absolute;
+      top:20px;
+      left:20px;
+      background:rgba(0,0,0,0.7);
+      padding:10px 18px;
+      border-radius:30px;
+      font-size:18px;
+      font-weight:bold;
+      letter-spacing:1px;
+    }
+
+    .enhanced{
+      background:#25d5ff;
+      color:black;
+    }
+
+    @media(max-width:1300px){
+      .card{
+        width:90%;
+      }
+    }
+
+    @media(max-width:768px){
+
+      .logo{
+        font-size:42px;
+      }
+
+      .subtitle{
+        font-size:18px;
+        margin-bottom:40px;
+      }
+
+      .image-container{
+        gap:20px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<section class="hero">
+
+  <div class="overlay"></div>
+
+  <div class="content">
+
+    <div class="logo">
+      SUBSEA<span>IFY</span>
+    </div>
+
+    <div class="subtitle">
+      AI-powered underwater video enhancement and color restoration
+    </div>
+
+    <div class="image-container">
+
+      <div class="card">
+        <div class="label">ORIGINAL</div>
+        <img src="original.jpg" alt="Original Underwater Image">
+      </div>
+
+      <div class="card">
+        <div class="label enhanced">ENHANCED</div>
+        <img src="enhanced.jpg" alt="Enhanced Underwater Image">
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+</body>
+</html>
