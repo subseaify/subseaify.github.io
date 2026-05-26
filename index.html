@@ -1,264 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Subseaify</title>
 
   <style>
-
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+    *{margin:0;padding:0;box-sizing:border-box}
 
     body{
       font-family:Arial, Helvetica, sans-serif;
-      overflow-x:hidden;
-      background:black;
+      background:#000;
       color:white;
+      overflow-x:hidden;
     }
 
     .hero{
       position:relative;
-      width:100%;
       min-height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
+      padding:35px 20px 60px;
       overflow:hidden;
-      padding:60px 20px;
     }
 
     .bg-video{
-      position:absolute;
-      top:0;
-      left:0;
+      position:fixed;
+      inset:0;
       width:100%;
       height:100%;
       object-fit:cover;
-      z-index:0;
+      z-index:-3;
     }
 
     .overlay{
-      position:absolute;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      background:
-      linear-gradient(
-        rgba(0,0,0,0.45),
-        rgba(0,0,0,0.65)
-      );
-      z-index:1;
-    }
-
-    .content{
-      position:relative;
-      z-index:2;
-      width:100%;
-      max-width:1500px;
-      text-align:center;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.35);
+      z-index:-2;
     }
 
     .logo{
-      font-size:72px;
-      font-weight:900;
-      letter-spacing:4px;
-      margin-bottom:20px;
+      position:absolute;
+      top:28px;
+      left:35px;
+      width:230px;
+      max-width:42vw;
+      z-index:5;
     }
 
-    .logo span{
-      color:#29d5ff;
+    .content{
+      max-width:980px;
+      margin:90px auto 0;
+      text-align:center;
     }
 
-    .headline{
-      font-size:78px;
-      font-weight:900;
+    h1{
+      font-size:56px;
       line-height:1.05;
-      margin-bottom:20px;
+      font-weight:900;
+      letter-spacing:1px;
+      margin-bottom:30px;
     }
 
-    .headline .blue{
+    h1 span{
       color:#29d5ff;
     }
 
-    .subtitle{
-      font-size:28px;
-      color:#d8e6ee;
-      margin-bottom:55px;
-    }
-
-    .result-card{
+    .slider{
+      position:relative;
       width:100%;
-      max-width:1400px;
-      margin:auto;
-      border-radius:28px;
+      max-width:850px;
+      height:260px;
+      margin:18px auto;
       overflow:hidden;
-
-      border:1px solid rgba(255,255,255,0.12);
-
-      box-shadow:
-      0 0 60px rgba(0,0,0,0.45);
-
-      backdrop-filter:blur(10px);
+      border-radius:18px;
+      border:2px solid rgba(41,213,255,0.8);
+      box-shadow:0 0 35px rgba(0,0,0,0.55);
+      background:#000;
     }
 
-    .result-card img{
+    .slider img{
+      position:absolute;
+      inset:0;
       width:100%;
-      display:block;
+      height:100%;
+      object-fit:cover;
     }
 
-    .features{
+    .enhanced{
+      clip-path:inset(0 0 0 50%);
+    }
+
+    .handle{
+      position:absolute;
+      top:0;
+      left:50%;
+      width:3px;
+      height:100%;
+      background:#29d5ff;
+      transform:translateX(-50%);
+      z-index:4;
+    }
+
+    .handle::after{
+      content:"↔";
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      width:46px;
+      height:46px;
+      border-radius:50%;
+      background:rgba(0,0,0,0.7);
+      border:2px solid #29d5ff;
       display:flex;
       justify-content:center;
-      gap:30px;
-      flex-wrap:wrap;
-      margin-top:45px;
-    }
-
-    .feature{
-      background:rgba(255,255,255,0.06);
-
-      border:1px solid rgba(255,255,255,0.08);
-
-      padding:20px 24px;
-
-      border-radius:20px;
-
-      backdrop-filter:blur(10px);
-
-      min-width:240px;
-    }
-
-    .feature-title{
+      align-items:center;
       color:#29d5ff;
-      font-size:18px;
+      font-size:24px;
       font-weight:bold;
-      margin-bottom:10px;
     }
 
-    .feature-text{
-      color:#d8e6ee;
-      line-height:1.5;
-      font-size:15px;
+    .slider input{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      opacity:0;
+      cursor:ew-resize;
+      z-index:10;
     }
 
-    @media(max-width:1200px){
-
-      .headline{
-        font-size:56px;
-      }
-
-      .logo{
-        font-size:54px;
-      }
-
-      .subtitle{
-        font-size:22px;
-      }
-
+    .label{
+      position:absolute;
+      top:14px;
+      padding:7px 14px;
+      border-radius:20px;
+      background:rgba(0,0,0,0.55);
+      font-weight:bold;
+      z-index:6;
+      font-size:14px;
     }
+
+    .left{left:14px}
+    .right{right:14px;color:#29d5ff}
 
     @media(max-width:768px){
+      .logo{
+        width:170px;
+        left:20px;
+      }
 
-      .headline{
+      .content{
+        margin-top:100px;
+      }
+
+      h1{
         font-size:38px;
       }
 
-      .logo{
-        font-size:42px;
+      .slider{
+        height:190px;
       }
-
-      .subtitle{
-        font-size:18px;
-      }
-
-      .features{
-        gap:18px;
-      }
-
-      .feature{
-        width:100%;
-      }
-
     }
-
   </style>
-
 </head>
 
 <body>
 
+  <video autoplay muted loop playsinline class="bg-video">
+    <source src="./ocean.mp4" type="video/mp4">
+  </video>
+
+  <div class="overlay"></div>
+
   <section class="hero">
 
-    <video autoplay muted loop playsinline class="bg-video">
-      <source src="./ocean.mp4" type="video/mp4">
-    </video>
-
-    <div class="overlay"></div>
+    <img class="logo" src="./Subseaify_Logo.png" alt="Subseaify Logo">
 
     <div class="content">
 
-      <div class="logo">
-        SUBSEA<span>IFY</span>
+      <h1>
+        Transforming<br>
+        <span>Underwater Visibility</span>
+      </h1>
+
+      <div class="slider">
+        <img src="./1_Original.jpg" alt="Original underwater image">
+        <img class="enhanced" src="./1_Enhanced.jpg" alt="Enhanced underwater image">
+        <div class="label left">Original</div>
+        <div class="label right">Enhanced</div>
+        <div class="handle"></div>
+        <input type="range" min="0" max="100" value="50">
       </div>
 
-      <div class="headline">
-        SEE CLEARER.<br>
-        <span class="blue">INSPECT SMARTER.</span>
-      </div>
-
-      <div class="subtitle">
-        AI-powered underwater video enhancement and color restoration
-      </div>
-
-      <div class="result-card">
-        <img src="Subseaify_Result.png" alt="Subseaify Results">
-      </div>
-
-      <div class="features">
-
-        <div class="feature">
-          <div class="feature-title">
-            Enhanced Visibility
-          </div>
-
-          <div class="feature-text">
-            Transform murky underwater footage into clearer visual data.
-          </div>
-        </div>
-
-        <div class="feature">
-          <div class="feature-title">
-            AI Enhancement
-          </div>
-
-          <div class="feature-text">
-            Advanced underwater enhancement powered by AI.
-          </div>
-        </div>
-
-        <div class="feature">
-          <div class="feature-title">
-            Subsea Inspection
-          </div>
-
-          <div class="feature-text">
-            Improve underwater inspection efficiency and safety.
-          </div>
-        </div>
-
+      <div class="slider">
+        <img src="./2_Original.jpg" alt="Original underwater image">
+        <img class="enhanced" src="./2_Enhanced.jpg" alt="Enhanced underwater image">
+        <div class="label left">Original</div>
+        <div class="label right">Enhanced</div>
+        <div class="handle"></div>
+        <input type="range" min="0" max="100" value="50">
       </div>
 
     </div>
 
   </section>
 
-</body>
+  <script>
+    document.querySelectorAll('.slider').forEach(slider => {
+      const range = slider.querySelector('input');
+      const enhanced = slider.querySelector('.enhanced');
+      const handle = slider.querySelector('.handle');
 
+      range.addEventListener('input', () => {
+        const value = range.value;
+        enhanced.style.clipPath = `inset(0 0 0 ${value}%)`;
+        handle.style.left = `${value}%`;
+      });
+    });
+  </script>
+
+</body>
 </html>
